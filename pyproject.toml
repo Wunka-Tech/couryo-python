@@ -1,0 +1,55 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "couryo"
+dynamic = ["version"]
+description = "Official Python SDK for the Couryo email API: typed, with retries, automatic Idempotency-Key, webhook verification and a Django email backend."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Wunka" }]
+keywords = ["couryo", "email", "transactional email", "smtp", "webhooks", "django"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Framework :: Django",
+  "Topic :: Communications :: Email",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Typing :: Typed",
+]
+dependencies = ["httpx>=0.24,<1"]
+
+[project.optional-dependencies]
+django = ["django>=3.2"]
+
+[project.urls]
+Homepage = "https://couryo.com"
+Documentation = "https://couryo.com/docs/sdks"
+Repository = "https://github.com/Wunka-Tech/couryo-python"
+Issues = "https://github.com/Wunka-Tech/couryo-python/issues"
+
+[tool.hatch.version]
+path = "src/couryo/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/couryo"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/couryo", "tests", "README.md", "README.pt-BR.md", "LICENSE", "pyproject.toml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
